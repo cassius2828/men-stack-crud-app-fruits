@@ -1,0 +1,13 @@
+<!-- meta tags and body style -->
+<%- include('../partials/meta.ejs') %>
+  <h1>All Fruits</h1>
+  <ul style="list-style: none;">
+    <% allFruits.forEach(fruit => { %>
+     <li style="margin: 1rem 0; ">
+        <a style="color: white;text-decoration: none; cursor: pointer;" href="/fruits/<%= fruit._id %>"><%= fruit.name %></a>
+     </li> 
+    <% }) %>
+  </ul>
+    </body>
+
+    </html>

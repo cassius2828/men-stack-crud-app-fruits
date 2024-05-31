@@ -1,0 +1,12 @@
+<!-- meta tags and body style -->
+<%- include('../partials/meta.ejs') %>
+    <h1>Here is the selected fruit: <%= selectedFruit.name %></h1>
+    <% if (selectedFruit.isReadyToEat) { %>
+        <p>Your <%= selectedFruit.name %> is ready to eat!</p>
+      <% } else { %>
+        <p>Not so fast! Your <%= selectedFruit.name %> is not ready to eat yet.</p>
+      <% } %>
+     
+    </body>
+
+    </html>

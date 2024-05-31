@@ -1,0 +1,17 @@
+<!-- meta tags and body style -->
+<%- include('../partials/meta.ejs') %>
+    <h1>Create a new fruit</h1>
+    <form action="/fruits" method="POST">
+    
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text">
+       
+    
+            <label for="isReadyToEat">Ready to Eat?</label>
+            <input id="isReadyToEat" name="isReadyToEat" type="checkbox">
+   
+        <button>Add Fruit</button>
+    </form>
+    </body>
+
+    </html>
