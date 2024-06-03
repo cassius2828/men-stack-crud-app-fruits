@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
-
+const path = require("path");
 // setups
 dotenv.config();
 const app = e();
@@ -33,7 +33,8 @@ app.use(e.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 // method overrides
 app.use(methodOverride("_method"));
-
+// serve public files
+app.use(e.static(path.join(__dirname, "public")));
 ///////////////////////////
 // http requests
 ///////////////////////////
