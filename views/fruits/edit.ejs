@@ -1,0 +1,20 @@
+<!-- meta tags and body style -->
+<%- include('../partials/meta.ejs') %>
+  <h1>Now you can edit your selected fruit: <%= selectedFruit.name %>
+  </h1>
+       
+ 
+<form action="/fruits/<%= selectedFruit._id %>/edit?_method=PUT" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+    <label for="isReadyToEat">Is Ready TO Eat?</label>
+    <input type="checkbox" id="isReadyToEat" name="isReadyToEat" <% if(selectedFruit.isReadyToEat){ %>
+      checked
+    <%  } %>
+      > <div style="margin: 2rem;">
+    <button type="submit" style="color: #2c2c2c; text-decoration: none; border: solid 1px #f2f2f2; padding: 1rem;" href="/fruits/<%= selectedFruit._id %>/edit">Confirm changes to <%= selectedFruit.name %></button>
+
+  </div></form>
+        </body>
+
+        </html>

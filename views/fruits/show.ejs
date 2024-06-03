@@ -1,12 +1,18 @@
 <!-- meta tags and body style -->
 <%- include('../partials/meta.ejs') %>
-    <h1>Here is the selected fruit: <%= selectedFruit.name %></h1>
-    <% if (selectedFruit.isReadyToEat) { %>
-        <p>Your <%= selectedFruit.name %> is ready to eat!</p>
-      <% } else { %>
-        <p>Not so fast! Your <%= selectedFruit.name %> is not ready to eat yet.</p>
+  <h1>Here is the selected fruit: <%= selectedFruit.name %>
+  </h1>
+  <% if (selectedFruit.isReadyToEat) { %>
+    <p>Your <%= selectedFruit.name %> is ready to eat!</p>
+    <% } else { %>
+      <p>Not so fast! Your <%= selectedFruit.name %> is not ready to eat yet.</p>
       <% } %>
      
-    </body>
+        <div style="margin: 2rem;">
+          <a style="color: #f2f2f2; text-decoration: none; border: solid 1px #f2f2f2; padding: 1rem;" href="/fruits/<%= selectedFruit._id %>/edit">Edit <%= selectedFruit.name %></a>
 
-    </html>
+        </div>
+<!-- <a style="color: #f2f2f2; text-decoration: none; border: solid 1px #f2f2f2; padding: 1rem;" href="/fruits/<%= selectedFruit._id %>/edit">Edit <%= selectedFruit.name %></a> -->
+        </body>
+
+        </html>
