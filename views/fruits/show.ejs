@@ -1,18 +1,39 @@
 <!-- meta tags and body style -->
 <%- include('../partials/meta.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+  <div class="fruit-details"></div>
   <h1>Here is the selected fruit: <%= selectedFruit.name %>
   </h1>
+
+
+
   <% if (selectedFruit.isReadyToEat) { %>
     <p>Your <%= selectedFruit.name %> is ready to eat!</p>
     <% } else { %>
       <p>Not so fast! Your <%= selectedFruit.name %> is not ready to eat yet.</p>
       <% } %>
-     
-        <div style="margin: 2rem;">
-          <a style="color: #f2f2f2; text-decoration: none; border: solid 1px #f2f2f2; padding: 1rem;" href="/fruits/<%= selectedFruit._id %>/edit">Edit <%= selectedFruit.name %></a>
 
+        <div class="action-container">
+          <form
+          class="delete-form"
+          action="/fruits/<%=selectedFruit._id%>?_method=DELETE"
+          method="POST"
+        >
+          <button class="delete-button" type="submit">
+            Delete <%= selectedFruit.name %>
+          </button>
+        </form>
+        <a class="edit-link" href="/fruits/<%= selectedFruit._id %>/edit">
+          <div class="edit-text">Edit <%= selectedFruit.name %></div>
+        </a>
+      
         </div>
-<!-- <a style="color: #f2f2f2; text-decoration: none; border: solid 1px #f2f2f2; padding: 1rem;" href="/fruits/<%= selectedFruit._id %>/edit">Edit <%= selectedFruit.name %></a> -->
+        </div>
+        <a class="fruits-index-link" href="/fruits">
+          <div class="index-link-text">Back to Fruits</div>
+        </a>
         </body>
 
         </html>
+        <%- include('../partials/footer.ejs') %>

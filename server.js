@@ -51,7 +51,6 @@ app.get("/fruits", async (req, res) => {
   // display all fruits in index.ejs
 
   const allFruits = await FruitModel.find({});
-  // console.log(allFruits);
   res.render("fruits/index.ejs", { allFruits });
 });
 
@@ -64,18 +63,8 @@ app.get("/fruits/new", (req, res) => {
 
 // create a new fruit
 app.post("/fruits", async (req, res) => {
-  //   if (req.body.isReadyToEat) {
-  //     req.body.isReadyToEat = true;
-  //   } else {
-  //     req.body.isReadyToEat = false;
-  //   }
-  //   the double bang forces the value to its boolean value
-  // ex: if there is nothing, it will be false, it there is something, it will be true
-
   req.body.isReadyToEat = !!req.body.isReadyToEat;
   const fruit = await FruitModel.create(req.body);
-  //   console.log(req.body);
-  //   console.log(fruit);
   res.redirect("/fruits");
 });
 
@@ -83,15 +72,13 @@ app.post("/fruits", async (req, res) => {
 app.get("/fruits/:id", async (req, res) => {
   const { id } = req.params;
   const selectedFruit = await FruitModel.findById(id);
-  //   console.log(selectedFruit, " <-- selected fruit");
   res.render("fruits/show.ejs", { selectedFruit });
 });
 
 // delete fruit
 app.delete("/fruits/:id", async (req, res) => {
   const { id } = req.params;
-  const fruitToDelete = await FruitModel.deleteOne({ id });
-  console.log("deleted this fruit", fruitToDelete);
+  const fruitToDelete = await FruitModel.deleteOne({ _id: id });
   res.redirect("/fruits");
 });
 
@@ -113,8 +100,8 @@ app.put("/fruits/:id/edit", async (req, res) => {
     isFruitReadyToEat: !!req.body.isFruitReadyToEat,
   };
 
-  const fruitToEdit = await FruitModel.findByIdAndUpdate(id, selectedFruitInfo);
-  // console.log('Updated fruit', fruitToEdit)
+  await FruitModel.findByIdAndUpdate(id, selectedFruitInfo);
+
   res.redirect("/fruits");
 });
 

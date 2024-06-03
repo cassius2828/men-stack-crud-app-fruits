@@ -1,13 +1,27 @@
 <!-- meta tags and body style -->
 <%- include('../partials/meta.ejs') %>
+<div class="index-header-div">
   <h1>All Fruits</h1>
-  <ul style="list-style: none;">
-    <% allFruits.forEach(fruit => { %>
-     <li style="margin: 1rem 0; ">
-        <a style="color: white;text-decoration: none; cursor: pointer;" href="/fruits/<%= fruit._id %>"><%= fruit.name %></a>
-     </li> 
-    <% }) %>
-  </ul>
+  <%- include('../partials/nav.ejs') %>
+ 
+</div>
+  <img
+  class="fruit-pic1"
+  src="https://cdn-icons-png.flaticon.com/128/5312/5312448.png"
+  alt="happy fruit salad bowl"
+/>
+<ul>
+  <% allFruits.forEach((fruit)=> { %>
+  <li>
+    <a class="fruit-cards" href="/fruits/<%=fruit._id%>">
+      <%= fruit.name %>
+    </a>
+  </li>
+  <% }) %>
+</ul>
+
     </body>
 
     </html>
+
+    <%- include('../partials/footer.ejs') %>
