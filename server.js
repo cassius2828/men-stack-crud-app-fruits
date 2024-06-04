@@ -12,11 +12,13 @@ const app = e();
 const MONGODB_URI = process.env.MONGODB_URI;
 
 ///////////////////////////
-// IMPORT MODELS
+//  Controller Export
 ///////////////////////////
+const fruitsCtrl = require("./controllers/fruits");
 
-const FruitModel = require("./models/fruit");
-
+///////////////////////////
+// Connect to Database
+///////////////////////////
 mongoose.connect(MONGODB_URI);
 // this function will fire once a connection
 // between our express and mongdv atlas is confirmed
@@ -35,75 +37,38 @@ app.use(morgan("dev"));
 app.use(methodOverride("_method"));
 // serve public files
 app.use(e.static(path.join(__dirname, "public")));
+
 ///////////////////////////
-// http requests
+// Landing Route
 ///////////////////////////
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-// Read Routes
-// Index Route - We want a page that we can view all the fruits
+///////////////////////////
+// Fruits Controllers
+///////////////////////////
 
 // get all fruits
-app.get("/fruits", async (req, res) => {
-  // go to db and get all fruits
-  // display all fruits in index.ejs
-
-  const allFruits = await FruitModel.find({});
-  res.render("fruits/index.ejs", { allFruits });
-});
+app.get("/fruits", fruitsCtrl.index);
 
 // render the new fruit page
-app.get("/fruits/new", (req, res) => {
-  // res.render looks at views for template
-
-  res.render("fruits/new.ejs");
-});
+app.get("/fruits/new", fruitsCtrl.new);
 
 // create a new fruit
-app.post("/fruits", async (req, res) => {
-  req.body.isReadyToEat = !!req.body.isReadyToEat;
-  const fruit = await FruitModel.create(req.body);
-  res.redirect("/fruits");
-});
+app.post("/fruits", fruitsCtrl.create);
 
 // get fruit by id
-app.get("/fruits/:id", async (req, res) => {
-  const { id } = req.params;
-  const selectedFruit = await FruitModel.findById(id);
-  res.render("fruits/show.ejs", { selectedFruit });
-});
+app.get("/fruits/:id", fruitsCtrl.show);
 
 // delete fruit
-app.delete("/fruits/:id", async (req, res) => {
-  const { id } = req.params;
-  const fruitToDelete = await FruitModel.deleteOne({ _id: id });
-  res.redirect("/fruits");
-});
+app.delete("/fruits/:id", fruitsCtrl.remove);
 
 // show edit fruit
-app.get("/fruits/:id/edit", async (req, res) => {
-  const { id } = req.params;
-
-  const selectedFruit = await FruitModel.findById(id);
-
-  res.render("fruits/edit.ejs", { selectedFruit });
-});
+app.get("/fruits/:id/edit", fruitsCtrl.showEdit);
 
 // edit fruit
-app.put("/fruits/:id/edit", async (req, res) => {
-  const { id } = req.params;
-
-  const selectedFruitInfo = {
-    name: req.body.name,
-    isFruitReadyToEat: !!req.body.isFruitReadyToEat,
-  };
-
-  await FruitModel.findByIdAndUpdate(id, selectedFruitInfo);
-
-  res.redirect("/fruits");
-});
+app.put("/fruits/:id/edit", fruitsCtrl.edit);
 
 app.listen(3000, () => {
   //   console.log("listening on port 3000");

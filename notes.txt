@@ -1,0 +1,36 @@
+///////////////////////////
+MVC
+///////////////////////////
+
+What is MVC?
+- Model-View-Controller
+- way to order your app into different functionalities
+- separation of concerns 
+
+Model: 
+- Source of truth for the structure and format of data as it moves in and out of the app
+
+View: 
+- Visual side of the app 
+- WHat users see; just concerned with displaying things to the user 
+
+Controller:
+- Middle man between Modela nd View 
+- tells model what to do and how to respond to the view 
+- here our cb's are our controllers 
+- route names are usually our function name in the controllers 
+
+____________________________
+Use of MVC 
+____________________________
+
+- MVC forms the core of many popular tools like 
+- ASP.NET, Ruby on Rails, Angular JS 
+- Also can be found in CMS 
+** helps us in being able to speak the same lingo and understand devs
+
+
+________________________________________________________
+Each separate concern would get its own MVC 
+________________________________________________________
+ex: Fruits get fruits while veggies would get veggies 
