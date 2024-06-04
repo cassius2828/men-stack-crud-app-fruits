@@ -1,11 +1,11 @@
 const FruitModel = require("../models/fruit");
 
 // get all fruits
-async function index(req, res) {
+const index = async (req, res) => {
   const allFruits = await FruitModel.find({});
 
   res.render("fruits/index.ejs", { allFruits });
-}
+};
 
 // create a new fruit
 const create = async (req, res) => {

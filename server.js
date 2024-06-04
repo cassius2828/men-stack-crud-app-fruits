@@ -1,15 +1,13 @@
 // requires
 const e = require("express");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 const path = require("path");
 // setups
 dotenv.config();
 const app = e();
-// vars
-const MONGODB_URI = process.env.MONGODB_URI;
+
 
 ///////////////////////////
 //  Controller Export
@@ -19,12 +17,7 @@ const fruitsCtrl = require("./controllers/fruits");
 ///////////////////////////
 // Connect to Database
 ///////////////////////////
-mongoose.connect(MONGODB_URI);
-// this function will fire once a connection
-// between our express and mongdv atlas is confirmed
-mongoose.connection.on("connected", function () {
-  console.log(`Connected to Mongodb ${mongoose.connection.name}`);
-});
+require('./config/database')
 
 ///////////////////////////
 // Middleware
